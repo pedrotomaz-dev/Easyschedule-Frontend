@@ -1,0 +1,12 @@
+{
+  "routes": {
+    "/git@github.com:pedrotomaz-dev/Easyschedule-Frontend.git": {},
+    "/git@github.com:pedrotomaz-dev/Easyschedule-Frontend.git/autoRegister": {},
+    "/git@github.com:pedrotomaz-dev/Easyschedule-Frontend.git/fullSchedule": {},
+    "/git@github.com:pedrotomaz-dev/Easyschedule-Frontend.git/home": {},
+    "/git@github.com:pedrotomaz-dev/Easyschedule-Frontend.git/login": {},
+    "/git@github.com:pedrotomaz-dev/Easyschedule-Frontend.git/professionalList": {},
+    "/git@github.com:pedrotomaz-dev/Easyschedule-Frontend.git/scheduling": {},
+    "/git@github.com:pedrotomaz-dev/Easyschedule-Frontend.git/serviceList": {}
+  }
+}
