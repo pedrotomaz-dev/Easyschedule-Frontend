@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError, map, shareReplay, throwError } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiCommunication {
-  private readonly baseUrl = 'https://localhost:44323/api'; 
-  // private readonly baseUrl = 'https://easyschedule.somee.com/api'; 
 
   constructor(private http: HttpClient) { }
 
@@ -31,7 +30,7 @@ export class ApiCommunication {
   // Método GET
   get<T>(endpoint: string, params?: HttpParams): Observable<T> {
     return this.http
-      .get<T>(`${this.baseUrl}/${endpoint}`, {
+      .get<T>(`${environment.apiUrl}/${endpoint}`, {
         headers: this.getDefaultHeaders(),
         params,
       })
@@ -44,7 +43,7 @@ export class ApiCommunication {
   // Método POST
   post<T>(endpoint: string, body: any): Observable<T> {
     return this.http
-      .post<T>(`${this.baseUrl}/${endpoint}`, body, {
+      .post<T>(`${environment.apiUrl}/${endpoint}`, body, {
         headers: this.getDefaultHeaders(),
       })
       .pipe(map(x => x), catchError(this.handleError));
@@ -53,7 +52,7 @@ export class ApiCommunication {
   // Método PUT
   put<T>(endpoint: string, body: any): Observable<T> {
     return this.http
-      .put<T>(`${this.baseUrl}/${endpoint}`, body, {
+      .put<T>(`${environment.apiUrl}/${endpoint}`, body, {
         headers: this.getDefaultHeaders(),
       })
       .pipe(map(x => x), catchError(this.handleError));
@@ -62,7 +61,7 @@ export class ApiCommunication {
   // Método DELETE
   delete<T>(endpoint: string): Observable<T> {
     return this.http
-      .delete<T>(`${this.baseUrl}/${endpoint}`, {
+      .delete<T>(`${environment.apiUrl}/${endpoint}`, {
         headers: this.getDefaultHeaders(),
       })
       .pipe(map(x => x), catchError(this.handleError));

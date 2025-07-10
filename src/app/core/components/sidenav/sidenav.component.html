@@ -18,10 +18,10 @@
   <mat-sidenav #sidenav mode="over" [opened]="false">
     <mat-nav-list>
       @for (item of menuItems(); track item) {
-        <a mat-list-item class="menu-item" [routerLink]="[item.rota]" routerLinkActive="selected-menu-item" #rla="routerLinkActive" (click)="toggleSidenav()">
-          <mat-icon matListItemIcon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'">{{ item.icone }}</mat-icon>
-          <span>{{ item.titulo }}</span>
-        </a>
+          <a mat-list-item class="menu-item" [routerLink]="[item.rota]" routerLinkActive="selected-menu-item" #rla="routerLinkActive" (click)="toggleSidenav()">
+            <mat-icon matListItemIcon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'">{{ item.icone }}</mat-icon>
+            <span>{{ item.titulo }}</span>
+          </a>
       }
     </mat-nav-list>
   </mat-sidenav>

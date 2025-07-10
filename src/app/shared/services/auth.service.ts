@@ -3,6 +3,13 @@ import { ApiCommunication } from '../../core/services/api-communication.service'
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { jwtDecode } from 'jwt-decode';
+
+interface JwtPayload {
+  name: string;
+  role: string; 
+  exp: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +47,20 @@ export class AuthService {
 
   getToken(): string | null {
     return isPlatformBrowser(this.platformId) ? localStorage.getItem('auth_token') : null;
+  }
+
+  getRole(): string | null {
+
+    const token = localStorage.getItem('auth_token');
+    if (!token) return null;
+
+    try {
+      const decoded = jwtDecode<JwtPayload>(token);
+      return decoded.role || null;
+    } catch (e) {
+      console.error('Token inválido', e);
+      return null;
+    }
   }
 
 }
