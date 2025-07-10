@@ -1,0 +1,68 @@
+@if (formProfissional) {
+    <div class="page-container">
+        <div class="form-wrapper">
+            <mat-card>
+                <mat-card-title class="mg-b-default">Profissional</mat-card-title>
+                <!-- <br> -->
+                <mat-card-content>
+                    <form [formGroup]="formProfissional" (ngSubmit)="submitProfessional()">
+                        <!-- Container flex para os inputs -->
+                        <div class="form-row">
+                            <!-- Campo Nome (Menor largura) -->
+                            <mat-form-field appearance="outline" class="form-field flex-large">
+                                <mat-label>Nome</mat-label>
+                                <input matInput placeholder="Nome" formControlName="nome" (blur)="showErrorMessage()" required />
+                                @if (errorMessages['nome']) { {{ errorMessages['nome'] }} }
+                            </mat-form-field>
+                            
+                            <!-- Campo Telefone (Menor largura) -->
+                            <mat-form-field appearance="outline" class="form-field flex-small">
+                                <mat-label>Telefone</mat-label>
+                                <input matInput phoneMask placeholder="(00) 00000-0000" formControlName="telefone" (blur)="showErrorMessage()" required />
+                                @if (errorMessages['nome']) { {{ errorMessages['nome'] }} }
+                                
+                            </mat-form-field>
+                        </div>
+
+
+                        <div class="form-row">
+                            <!-- E-mail -->
+                            <mat-form-field appearance="outline" class="form-field flex-large">
+                                <mat-label>E-Mail</mat-label>
+                                <input matInput placeholder="email@email.com" formControlName="email" (blur)="showErrorMessage()"  />
+                                @if (errorMessages['cpf']) { {{ errorMessages['cpf'] }} }
+                            </mat-form-field>
+
+                            <!-- CPFCNPJ  -->
+                            <mat-form-field appearance="outline" class="form-field flex-small">
+                                <mat-label>CPF/CNPJ</mat-label>
+                                <input matInput cpfCnpjMask placeholder="CPF/CNPJ" formControlName="cpfCnpj" (blur)="showErrorMessage()" />
+                                @if (errorMessages['cpfCnpj']) { {{ errorMessages['cpfCnpj'] }} }
+                            </mat-form-field>
+                        </div>
+    
+                        <!-- Serviços -->
+                        <mat-form-field class="form-field flex-large">
+                            <mat-label>Serviços</mat-label>
+                            <mat-select formControlName="servicos" multiple [compareWith]="servicesCompare">
+                                <mat-option *ngFor="let item of servicos" [value]="item">{{item.nome}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+    
+                        <mat-divider class="mg-b-default"></mat-divider>
+    
+                        <div class="button-group">
+                            <button mat-raised-button type="button" color="warn" (click)="goToProfessionalList()">
+                                Voltar
+                            </button>
+                            <button mat-raised-button type="submit" color="primary" [disabled]="formProfissional.invalid">
+                                Salvar
+                            </button>
+                        </div>
+    
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+}

@@ -1,0 +1,20 @@
+.mat-stepper-vertical {
+    margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+
+mat-form-field {
+    margin-right: 16px;
+}
+.bold-text {
+    font-weight: bold;
+  }
+.m-b-1 {
+    margin-bottom: 1rem;
+}  
+.m-t-2 {
+    margin-top: 2rem;
+}

@@ -1,0 +1,26 @@
+
+
+<app-spinner></app-spinner>
+
+<app-header
+  [isLoggedIn]="isLoggedIn"
+  (sidenavToggle)="toggleSidenav()">
+</app-header>
+
+<ng-container *ngIf="isLoggedIn; else loginContent">
+  <app-sidenav #sidenav>
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </app-sidenav>
+</ng-container>
+
+<ng-template #loginContent>
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</ng-template>
+
+<app-footer></app-footer>
+
+

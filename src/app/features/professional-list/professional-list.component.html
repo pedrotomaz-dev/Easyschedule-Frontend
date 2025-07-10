@@ -1,0 +1,58 @@
+<div class="demo-button-container">
+    <h3>Profissionais</h3>
+    <button mat-raised-button (click)="addProfessional()" class="demo-button">
+        <mat-icon>add</mat-icon>Adicionar Profissional
+    </button>
+</div>
+
+
+<table mat-table matSort [dataSource]="profissionais" class="mat-elevation-z8 demo-table" >
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let element">{{element.nome}}</td>
+        <!-- Contador -->
+        <td mat-footer-cell *matFooterCellDef>
+            Qtde: {{ getCounter() | number:'1.0-0':'pt-BR' }}
+        </td>
+    </ng-container>
+
+    <!-- Telefone Column -->
+    <ng-container matColumnDef="telefone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Telefone</th>
+        <td mat-cell *matCellDef="let element">{{element.telefone}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+
+    <!-- Ativo Column -->
+    <ng-container matColumnDef="ativo">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">
+            <span [ngClass]="element.ativo ? 'ativo' : 'inativo'">
+                {{ element.ativo ? 'Ativo' : 'Inativo' }}
+            </span>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+
+
+    <!-- Cabeçalho -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- Linhas -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="rowEdit(row)"
+    ></tr>
+    
+    <!-- Rodapé -->
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+
+    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+        mat-row
+        (click)="clickedRows.add(row)"
+        [class.demo-row-is-clicked]="clickedRows.has(row)"
+        *matRowDef="let row; columns: displayedColumns;"
+    ></tr> -->
+</table>

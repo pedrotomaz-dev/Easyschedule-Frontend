@@ -1,0 +1,15 @@
+.ativo {
+    color: green;
+    font-weight: bold;
+}
+
+.inativo {
+    color: red;
+    font-weight: bold;
+}
+
+.demo-button-container {
+    display: flex;
+    align-items: center;
+    place-content: space-between;
+}

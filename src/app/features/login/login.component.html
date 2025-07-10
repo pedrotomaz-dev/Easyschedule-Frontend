@@ -1,0 +1,26 @@
+<div class="login-container">
+    <mat-card class="login-card">
+        <h2 class="title">Login</h2>
+
+        <form [formGroup]="form" (ngSubmit)="login()" *ngIf="form">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>CPF</mat-label>
+                <input matInput formControlName="username" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" formControlName="password" required />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="form.invalid">
+                Entrar
+            </button>
+        </form>
+
+        <div class="signup-link">
+            <span>Não tem uma conta?</span>
+            <a mat-button color="accent" [routerLink]="['/autoRegister']">Cadastre-se</a>
+        </div>
+    </mat-card>
+</div>

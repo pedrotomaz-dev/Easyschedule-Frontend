@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+}
+
+.demo-button-container {
+    display: flex;
+    align-items: center;
+    place-content: space-between;
+}

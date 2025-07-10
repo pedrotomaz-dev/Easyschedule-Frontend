@@ -1,0 +1,65 @@
+.sidenav-container {
+  min-height: calc(100vh - 70px);
+  /* Garante que o sidenav ocupe a altura correta */
+}
+
+.sidenav {
+  width: 250px;
+  /* Define a largura fixa do sidenav */
+}
+
+.mat-sidenav-content {
+  padding: 1rem;
+  /* Espaçamento interno */
+}
+
+.menu-item {
+  display: flex;
+  /* Garante alinhamento entre ícone e texto */
+  align-items: center;
+  /* Centraliza o conteúdo verticalmente */
+  padding: 1rem;
+  /* Adiciona espaçamento para facilitar o clique */
+  text-decoration: none;
+  /* Remove sublinhado padrão de links */
+  color: inherit;
+  /* Usa a cor padrão */
+  font-size: 1rem;
+  /* Ajusta o tamanho da fonte */
+}
+
+.menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  /* Efeito de hover */
+  border-radius: 4px;
+  /* Bordas arredondadas */
+}
+
+.mat-list-item-icon {
+  margin-right: 1rem;
+  /* Espaçamento entre o ícone e o texto */
+}
+
+.selected-menu-item {
+  font-weight: bold;
+  /* Destaca o item ativo */
+  color: #6200ea;
+  /* Cor de destaque para o item selecionado */
+}
+
+.mat-nav-list {
+  padding: 0;
+  /* Remove espaçamento extra */
+  margin: 0;
+}
+
+
+.mat-sidenav-content {
+  padding: 0;
+  /* sem empurrar conteúdo */
+}
+
+.mat-drawer {
+  /* largura do menu */
+  width: 250px;
+}

@@ -1,0 +1,59 @@
+<div class="demo-button-container">
+    <h3>Serviços</h3>
+    <button mat-raised-button (click)="addService()" class="demo-button">
+        <mat-icon>add</mat-icon>Adicionar Serviço
+    </button>
+</div>
+
+
+<table mat-table matSort [dataSource]="servicos" class="mat-elevation-z8 demo-table" >
+    <!-- Sigla Column -->
+    <ng-container matColumnDef="sigla">
+        <th mat-header-cell *matHeaderCellDef>Sigla</th>
+        <td mat-cell *matCellDef="let element">{{element.sigla}}</td>
+        <!-- Contador -->
+        <td mat-footer-cell *matFooterCellDef>
+            Qtde: {{ getCounter() | number:'1.0-0':'pt-BR' }}
+        </td>
+    </ng-container>
+
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+        <td mat-cell *matCellDef="let element">{{element.nome}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+    <!-- Valor Column -->
+    <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let element">R$ {{element.valor | number:'1.2-2':'pt-BR'}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+    <!-- Tempo Column -->
+    <ng-container matColumnDef="tempoGastoEmHora">
+        <th mat-header-cell *matHeaderCellDef>Tempo (h)</th>
+        <td mat-cell *matCellDef="let element">{{element.tempoGastoEmHora | number:'1.2-2':'pt-BR'}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+
+    <!-- Cabeçalho -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- Linhas -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="rowEdit(row)"
+    ></tr>
+    
+    <!-- Rodapé -->
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+
+    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+        mat-row
+        (click)="clickedRows.add(row)"
+        [class.demo-row-is-clicked]="clickedRows.has(row)"
+        *matRowDef="let row; columns: displayedColumns;"
+    ></tr> -->
+</table>

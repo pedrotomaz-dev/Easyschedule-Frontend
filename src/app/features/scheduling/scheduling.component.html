@@ -1,0 +1,137 @@
+@if (formCliente && formServico && formProfissional && formHorarioAgendamento) {
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper (selectionChange)="selectionStepChange($event)">
+
+    <!-- Selecionar Cliente -->
+    <mat-step [stepControl]="formCliente" errorMessage="Informe seu nome">
+        <form [formGroup]="formCliente">
+            <ng-template matStepLabel>Seus dados (cliente)</ng-template>
+            
+            <!-- Nome -->
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input type="text"
+                    placeholder="Nome do cliente"
+                    arai-label="Nome"
+                    matInput
+                    formControlName="nome"
+                    [matAutocomplete]="autoNome"
+                    required
+                >
+                    <mat-autocomplete #autoNome="matAutocomplete" >
+                    @for (item of clientesFiltrados | async; track item) {
+                        <mat-option [value]="item.nome">{{item.nome}}</mat-option>
+                    }
+                    </mat-autocomplete>
+            </mat-form-field>
+
+            <!-- Telefone -->
+            <mat-form-field>
+                <mat-label>Telefone</mat-label>
+                <input type="text"
+                    placeholder="Telefone do cliente"
+                    arai-label="Telefone"
+                    matInput
+                    formControlName="telefone"
+                    [matAutocomplete]="autoTelefone"
+                    required
+                    phoneMask
+                >
+                    <mat-autocomplete #autoTelefone="matAutocomplete" >
+                    @for (item of clientesFiltrados | async; track item) {
+                        <mat-option [value]="item.telefone">{{item.telefone}}</mat-option>
+                    }
+                    </mat-autocomplete>
+            </mat-form-field>
+            
+            <div>
+                <button mat-button matStepperNext type="button">Próximo</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Selecionar Serviço -->
+    <mat-step [stepControl]="formServico" errorMessage="Selecione um serviço">
+        <form [formGroup]="formServico">
+            <ng-template matStepLabel>Escolha o serviço</ng-template>
+            <mat-form-field>
+                <mat-label>Serviço</mat-label>
+                <mat-select formControlName="servicoId" (selectionChange)="filterProfessionals(); stepper.next();">
+                    @for (item of servicos; track $index) {
+                    <mat-option [value]="item.id">{{ item.nome }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext type="button">Próximo</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Selecionar Profissional -->
+    <mat-step [stepControl]="formProfissional" errorMessage="Selecione um profissional">
+        <form [formGroup]="formProfissional">
+            <ng-template matStepLabel>Escolha o profissional</ng-template>
+            <mat-form-field>
+                <mat-label>Profissional</mat-label>
+                <mat-select formControlName="profissionalId" (selectionChange)="stepper.next()">
+                    @for (item of profissionaisFiltrados; track $index) {
+                    <mat-option [value]="item.id">{{ item.nome }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious type="button">Voltar</button>
+                <button mat-button matStepperNext type="button">Próximo</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Selecionar Horário -->
+    <mat-step [stepControl]="formHorarioAgendamento" errorMessage="Selecione pelo menos a data" >
+        <form [formGroup]="formHorarioAgendamento">
+            <ng-template matStepLabel>Escolha o horário</ng-template>
+            <mat-form-field>
+                <mat-label>Data</mat-label>
+                <input type="text" id="data" matInput [matDatepicker]="datepicker" formControlName="data"
+                    placeholder="00/00/0000">
+                <mat-datepicker #datepicker />
+                <mat-datepicker-toggle [for]="datepicker" matSuffix />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Horário</mat-label>
+                <input matInput [matTimepicker]="timepicker" formControlName="horario" type="text" placeholder="00:00">
+                <mat-timepicker #timepicker />
+                <mat-timepicker-toggle [for]="timepicker" matSuffix />
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious type="button">Voltar</button>
+                <button mat-button matStepperNext type="button" >Confirmar</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Informações do agendamento -->
+    <mat-step>
+        <ng-template matStepLabel>Confirmação</ng-template>
+        <p>Confirme os dados do agendamento.</p>
+        @if (scheduleView) {
+            <p >Agendamento para o cliente <span class="bold-text">{{scheduleView?.cliente}}</span>, do serviço <span class="bold-text">{{scheduleView?.servico}}</span>, 
+                com a profissional <span class="bold-text">{{scheduleView?.profissional}}</span>, 
+                no dia <span class="bold-text">{{scheduleView?.data | date: 'EEEE - dd/MM/yyyy'}}</span> 
+                às <span class="bold-text">{{scheduleView?.horario | date: 'HH:mm'}}</span>.
+            </p>
+        }
+        <div class="m-t-1">
+            <button mat-raised-button extended type="button" class="m-b-1" (click)="saveSchedule();">
+                <mat-icon>event_available</mat-icon>Agendar
+            </button>
+            <button mat-button matStepperPrevious type="button">Voltar</button>
+            <button mat-button type="button" (click)="stepperReset()">Limpar dados</button>
+        </div>
+        
+        <div>
+        </div>
+    </mat-step>
+</mat-stepper>
+}

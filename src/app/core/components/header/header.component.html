@@ -1,0 +1,23 @@
+<mat-toolbar #header color="primary" class="header">
+  @if (isLoggedIn) {
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  }
+
+  <span class="m-l-1">Easy Schedule</span>
+
+  <span class="spacer"></span>
+
+  @if (isLoggedIn) {
+  <!-- Botão com ícone -->
+  <!-- <button mat-icon-button (click)="logout()" aria-label="Sair">
+    <mat-icon>logout</mat-icon>
+  </button> -->
+
+  <!-- Botão com ícone e texto -->
+  <button mat-button (click)="logout()">
+    <mat-icon>logout</mat-icon> Sair
+  </button>
+  }
+</mat-toolbar>

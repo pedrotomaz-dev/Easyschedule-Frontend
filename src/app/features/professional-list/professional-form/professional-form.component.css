@@ -1,0 +1,79 @@
+/* Container principal para ocupar a tela inteira */
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: calc(100vh - 120px); */
+    /* background-color: #f5f5f5; */
+    /* Fundo claro */
+    /* padding: 1rem; */
+    /* box-sizing: border-box; */
+}
+
+/* Wrapper do formulário */
+.form-wrapper {
+    width: 100%;
+    /* max-width: 800px; */
+    /* Tamanho máximo do formulário */
+}
+
+/* Estilo do cartão */
+mat-card {
+    width: 100%;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+/* Organização em linha usando Flexbox */
+.form-row {
+    display: flex;
+    gap: 1rem;
+    /* Espaçamento entre os inputs */
+}
+
+/* Largura ajustada para os campos */
+.flex-small {
+    flex: 1;
+    /* Campo Sigla ocupa menos espaço */
+}
+
+.flex-large {
+    flex: 3;
+    /* Campo Nome ocupa mais espaço */
+}
+
+.flex-middle {
+    flex: 2;
+    /* Campo Nome ocupa mais espaço */
+}
+
+/* Margem inferior entre os campos */
+.form-field {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    place-content: space-between;
+    /* Espaçamento entre os botões */
+}
+
+.mg-b-default {
+    margin-bottom: 1rem;
+}
+
+.mg-t-default {
+    margin-top: 1rem;
+}
+
+/* Responsividade adicional para telas pequenas */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        /* Campos empilhados em telas pequenas */
+    }
+}

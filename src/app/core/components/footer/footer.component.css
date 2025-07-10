@@ -1,0 +1,7 @@
+.footer {
+    text-align: center;
+    font-size: x-small;
+    height: 20px;
+    background-color: #ccc;
+    place-content: center;
+}

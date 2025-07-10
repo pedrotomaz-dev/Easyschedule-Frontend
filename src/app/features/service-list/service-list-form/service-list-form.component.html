@@ -1,0 +1,78 @@
+@if (formServico) {
+<div class="page-container">
+    <div class="form-wrapper">
+        <mat-card>
+            <mat-card-title class="mg-b-default">Serviço</mat-card-title>
+            <!-- <br> -->
+            <mat-card-content>
+                <form [formGroup]="formServico" (ngSubmit)="submitService()">
+                    <!-- Container flex para os inputs -->
+                    <div class="form-row">
+                        <!-- Campo Sigla (Menor largura) -->
+                        <mat-form-field appearance="outline" class="form-field flex-small">
+                            <mat-label>Sigla</mat-label>
+                            <input matInput placeholder="Sigla" formControlName="sigla" (blur)="showErrorMessage()"
+                                required />
+                            @if (errorMessages['sigla']) {
+                            {{ errorMessages['sigla'] }}
+                            }
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="form-field flex-large">
+                            <mat-label>Nome</mat-label>
+                            <input matInput placeholder="Nome" formControlName="nome" (blur)="showErrorMessage()"
+                                required />
+                            @if (errorMessages['nome']) {
+                            {{ errorMessages['nome'] }}
+                            }
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-row">
+                        <mat-form-field appearance="outline" class="form-field flex-middle">
+                            <mat-label>Tempo gasto em horas</mat-label>
+                            <mat-select formControlName="tempoGastoEmHora" (blur)="showErrorMessage()" required>
+                                @for (item of horas; track $index) {
+                                <mat-option [value]="item.valor">{{item.texto}}</mat-option>
+                                }
+                            </mat-select>
+                            @if (errorMessages['tempoGastoEmHora']) { {{ errorMessages['tempoGastoEmHora'] }} }
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="form-field flex-middle">
+                            <mat-label>Valor</mat-label>
+                            <input matInput placeholder="Valor" formControlName="valor" (blur)="showErrorMessage()" currencyMask required />
+                            <!-- <span matTextPrefix>R$&nbsp;</span> -->
+                            @if (errorMessages['valor']) {
+                            {{ errorMessages['valor'] }}
+                            }
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field class="form-field flex-large">
+                        <mat-label>Profissionais</mat-label>
+                        <mat-select formControlName="profissionais" multiple [compareWith]="professionalsCompare">
+                            @for (item of profissionais; track $index) {
+                            <mat-option [value]="item">{{item.nome}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-divider class="mg-b-default"></mat-divider>
+
+                    <div class="button-group">
+                        <button mat-raised-button type="button" color="warn" (click)="goToServiceList()">
+                            Voltar
+                        </button>
+                        <button mat-raised-button type="submit" color="primary" [disabled]="formServico.invalid">
+                            Salvar
+                        </button>
+                    </div>
+
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+}

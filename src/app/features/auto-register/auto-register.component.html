@@ -1,0 +1,56 @@
+<div class="register-container">
+    <mat-card class="register-card">
+        <h2 class="title">Cadastro de Cliente</h2>
+        @if (formCustomer) {
+        <form [formGroup]="formCustomer" (ngSubmit)="submit()">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>CPF</mat-label>
+                <input matInput formControlName="cpfCnpj" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Telefone</mat-label>
+                <input matInput formControlName="telefone" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>E-mail</mat-label>
+                <input matInput formControlName="email" required type="email">
+            </mat-form-field>
+
+
+            <div class="senha-container">
+                <mat-form-field appearance="outline" class="senha-field">
+                    <mat-label>Senha</mat-label>
+                    <input matInput type="password" formControlName="senha">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="senha-field">
+                    <mat-label>Confirmar Senha</mat-label>
+                    <input matInput type="password" formControlName="confirmarSenha">
+                </mat-form-field>
+            </div>
+            @if (formCustomer.errors?.['senhasDiferentes'] && formCustomer.touched) {
+            <div class="senha-erro">
+                <mat-error>As senhas não coincidem.</mat-error>
+            </div>
+            }
+
+
+            <button mat-raised-button color="primary" class="full-width" [disabled]="formCustomer.invalid">
+                Cadastrar
+            </button>
+        </form>
+        }
+
+        <div class="signup-link">
+            <span>Já possui uma conta?</span>
+            <a mat-button color="accent" [routerLink]="['/login']">Voltar para Login</a>
+        </div>
+    </mat-card>
+</div>
