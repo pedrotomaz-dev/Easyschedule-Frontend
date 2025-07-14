@@ -65,7 +65,7 @@ export class ServiceListComponent {
   }
 
   private loadServices() {
-    // this.spinner.show();
+    this.spinner.show();
 
     this.servicoService.getAllWithProfessionals().subscribe({
       next: (servicos: Servico[]) => {

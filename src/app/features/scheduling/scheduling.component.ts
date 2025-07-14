@@ -24,6 +24,7 @@ import { ClienteService } from '../../shared/services/cliente.service';
 import { PhoneMaskDirective } from '../../core/directives/phone-mask.directive';
 import { AgendamentoService } from '../../shared/services/agendamento.service';
 import { Agendamento } from '../../shared/models/agendamento.model';
+import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({
@@ -59,6 +60,7 @@ export class SchedulingComponent implements OnInit {
   // variables
   isLinear = true;
   scheduleView = this.resetScheduleView();
+  role?: string | null;
 
   
   // lists
@@ -88,6 +90,7 @@ export class SchedulingComponent implements OnInit {
   private clienteService = inject(ClienteService);
   private agendamentoService = inject(AgendamentoService);
   private spinner = inject(SpinnerService);
+  private authService = inject(AuthService); 
   
 
 
@@ -101,14 +104,22 @@ export class SchedulingComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getRole();
     this.buildForms();
     this.valueChangesObservables();
     this.loadData();
+  }
+  private getRole() {
+    this.role = this.authService.getRole();
   }
 
 
   // public METHODS
   buildScheduleView() {
+    if (this.role == 'cliente')
+    {
+
+    }
     const servico = this.servicos.find(x => x.id == this.formServico?.value.servicoId);
     const profissional = this.profissionais.find(x => x.id == this.formProfissional?.value.profissionalId);
     const nome = this.formCliente?.value.nome ?? '';
@@ -175,7 +186,7 @@ export class SchedulingComponent implements OnInit {
     this.spinner.hide();
   }
 
-  private actionsForSuccessLoadData(clientes: Cliente[], servicos: Servico[], profissionais: Profissional[]) {
+  private actionsForSuccessLoadData(clientes: Cliente[] | null, servicos: Servico[], profissionais: Profissional[]) {
     this.spinner.hide();
     this.actionsForSuccessLoadClients(clientes);
     this.actionsForSuccessLoadServices(servicos);
@@ -186,9 +197,11 @@ export class SchedulingComponent implements OnInit {
     this.profissionais = profissionais;
   }
 
-  private actionsForSuccessLoadClients(clientes: Cliente[]) {
-    this.clientes = clientes;
-    this.clientesSubject.next(clientes);
+  private actionsForSuccessLoadClients(clientes: Cliente[] | null) {
+    if (clientes) {
+      this.clientes = clientes;
+    }
+    this.clientesSubject.next(this.clientes);
   }
 
   private actionsForSuccessLoadServices(servicos: Servico[]) {
@@ -265,18 +278,37 @@ export class SchedulingComponent implements OnInit {
 
   private loadData() {
     // this.spinner.show();
-    forkJoin([
-      this.clienteService.getAll(),
-      this.servicoService.getAllWithProfessionals(), 
-      this.profissionalService.getAllWithServices(),
-    ]).subscribe({
-      next: ([clientes, servicos, profissionais]: [Cliente[], Servico[], Profissional[]]) => {
-        this.actionsForSuccessLoadData(clientes, servicos, profissionais);
-      },
-      error: (error: any) => {
-        this.actionsForError(error);
-      }
-    });
+
+    
+    if (this.role == 'profissional' || this.role == 'admin') {
+      forkJoin([
+        this.clienteService.getAll(),
+        this.servicoService.getAllWithProfessionals(), 
+        this.profissionalService.getAllWithServices(),
+      ]).subscribe({
+        next: ([clientes, servicos, profissionais]: [Cliente[] | null, Servico[], Profissional[]]) => {
+          this.actionsForSuccessLoadData(clientes, servicos, profissionais);
+        },
+        error: (error: any) => {
+          this.actionsForError(error);
+        }
+      });
+
+    }
+    
+    if (this.role == 'cliente') {
+        forkJoin([
+        this.servicoService.getAllWithProfessionals(), 
+        this.profissionalService.getAllWithServices(),
+      ]).subscribe({
+        next: ([servicos, profissionais]: [Servico[], Profissional[]]) => {
+          this.actionsForSuccessLoadData(null, servicos, profissionais);
+        },
+        error: (error: any) => {
+          this.actionsForError(error);
+        }
+      });
+    }
   }
 
   private resetScheduleView(): any {

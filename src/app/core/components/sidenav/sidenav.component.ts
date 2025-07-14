@@ -61,7 +61,7 @@ export class SidenavComponent implements OnInit {
       icone: 'calendar_month',
       titulo: 'Calendário',
       rota: 'fullSchedule',
-
+      roles: ['admin', 'profissional']
     },
     {
       icone: 'design_services',

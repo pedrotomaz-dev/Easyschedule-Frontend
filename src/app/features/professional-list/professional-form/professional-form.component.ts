@@ -106,10 +106,8 @@ export class ProfessionalFormComponent {
 
   submitProfessional() {
     if (this.formProfissional?.valid) {
-      console.log(this.formProfissional.value);
 
       const obj = Object.assign({}, this.formProfissional.value);
-      
 
       if (obj.id) {
         this.profissionalService.update(obj).subscribe({
@@ -155,7 +153,6 @@ export class ProfessionalFormComponent {
       nome: [''],
       cpfCnpj: [''],
       email: [''],
-      ativo: [true],
       servicos: new FormArray([])
     });
   }
