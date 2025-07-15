@@ -11,7 +11,7 @@ import { SpinnerService } from '../../services/spinner.service';
     MatProgressSpinnerModule
   ],
   templateUrl: './spinner.component.html',
-  styleUrl: './spinner.component.css'
+  styleUrl: './spinner.component.scss'
 })
 export class SpinnerComponent {
 

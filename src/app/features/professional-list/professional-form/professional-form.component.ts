@@ -37,7 +37,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
   ],
   templateUrl: './professional-form.component.html',
-  styleUrl: './professional-form.component.css'
+  styleUrl: './professional-form.component.scss'
 })
 export class ProfessionalFormComponent {
 

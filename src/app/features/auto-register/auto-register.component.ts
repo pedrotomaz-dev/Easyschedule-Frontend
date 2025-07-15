@@ -18,7 +18,7 @@ import { Router, RouterLink } from '@angular/router';
     RouterLink
   ],
   templateUrl: './auto-register.component.html',
-  styleUrl: './auto-register.component.css'
+  styleUrl: './auto-register.component.scss'
 })
 export class AutoRegisterComponent {
 

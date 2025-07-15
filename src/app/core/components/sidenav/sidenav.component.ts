@@ -17,7 +17,7 @@ import { AuthService } from '../../../shared/services/auth.service';
         RouterModule,
     ],
     templateUrl: './sidenav.component.html',
-    styleUrl: './sidenav.component.css'
+    styleUrl: './sidenav.component.scss'
 })
 export class SidenavComponent implements OnInit {
   

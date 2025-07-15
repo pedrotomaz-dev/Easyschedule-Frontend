@@ -4,11 +4,9 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClientModule } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 registerLocaleData(localePt); // Registra o locale brasileiro
@@ -19,12 +17,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), 
     provideClientHydration(), 
     provideAnimationsAsync(),
-    importProvidersFrom(
-      HttpClientModule, // Adiciona o HttpClientModule globalmente
-    ), 
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     provideHttpClient(
+      withFetch(), 
       withInterceptors([jwtInterceptor])
     )
+
   ]
 };

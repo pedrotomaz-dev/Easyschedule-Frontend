@@ -21,7 +21,7 @@ import { SpinnerService } from '../../core/services/spinner.service';
         MatCardModule,
     ],
     templateUrl: './service-list.component.html',
-    styleUrl: './service-list.component.css'
+    styleUrl: './service-list.component.scss'
 })
 export class ServiceListComponent {
 

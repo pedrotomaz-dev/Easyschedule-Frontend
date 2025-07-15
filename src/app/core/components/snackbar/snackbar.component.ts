@@ -11,7 +11,7 @@ import { SpinnerService } from '../../services/spinner.service';
   selector: 'app-snackbar',
   imports: [],
   templateUrl: './snackbar.component.html',
-  styleUrl: './snackbar.component.css'
+  styleUrl: './snackbar.component.scss'
 })
 export class SnackbarComponent {
 

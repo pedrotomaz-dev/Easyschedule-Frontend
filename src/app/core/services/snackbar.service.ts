@@ -9,14 +9,16 @@ export class SnackbarService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  showMessage(message: string, type: 'success' | 'error', duration: number = 5000) {
-    const panelClass = type === 'success' ? 'snackbar-success' : 'snackbar-error';
-    this.snackBar.open(message, 'Close', {
+  showMessage(
+    message: string,
+    type: 'success' | 'error' | 'info' | 'warning' = 'info',
+    duration: number = 5000
+  ) {
+    this.snackBar.open(message, 'Fechar', {
       duration,
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      panelClass: ['snackbar-error'],
+      panelClass: [`snackbar-${type}`]
     });
   }
-
 }

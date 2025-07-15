@@ -115,6 +115,7 @@
     <mat-step>
         <ng-template matStepLabel>Confirmação</ng-template>
         <p>Confirme os dados do agendamento.</p>
+        
         @if (scheduleView) {
             <p >Agendamento para o cliente <span class="bold-text">{{scheduleView?.cliente}}</span>, do serviço <span class="bold-text">{{scheduleView?.servico}}</span>, 
                 com a profissional <span class="bold-text">{{scheduleView?.profissional}}</span>, 
@@ -122,6 +123,7 @@
                 às <span class="bold-text">{{scheduleView?.horario | date: 'HH:mm'}}</span>.
             </p>
         }
+
         <div class="m-t-1">
             <button mat-raised-button extended type="button" class="m-b-1" (click)="saveSchedule();">
                 <mat-icon>event_available</mat-icon>Agendar

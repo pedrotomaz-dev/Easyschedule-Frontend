@@ -52,7 +52,7 @@ import { AuthService } from '../../shared/services/auth.service';
       PhoneMaskDirective,
     ],
     templateUrl: './scheduling.component.html',
-    styleUrl: './scheduling.component.css'
+    styleUrl: './scheduling.component.scss'
 })
 export class SchedulingComponent implements OnInit {
   
@@ -138,6 +138,10 @@ export class SchedulingComponent implements OnInit {
     this.profissionaisFiltrados = this.profissionais.filter((profissional: Profissional) => {
       return profissional.servicos?.some((servico) => servico.id === this.formServico?.value.servicoId);
     });
+
+    if (this.profissionaisFiltrados.length === 0) {
+      this.snackbar.showError("")
+    }
   }
   
   saveSchedule() {

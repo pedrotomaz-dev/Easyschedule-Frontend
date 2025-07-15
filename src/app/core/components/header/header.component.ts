@@ -10,7 +10,7 @@ import { AuthService } from '../../../shared/services/auth.service';
         MatToolbarModule, MatButtonModule, MatIconModule
     ],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.css'
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   

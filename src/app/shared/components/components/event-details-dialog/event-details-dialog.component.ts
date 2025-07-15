@@ -11,7 +11,7 @@ import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
     CommonModule
   ],
   templateUrl: './event-details-dialog.component.html',
-  styleUrl: './event-details-dialog.component.css'
+  styleUrl: './event-details-dialog.component.scss'
 })
 
 export class EventDetailsDialogComponent {

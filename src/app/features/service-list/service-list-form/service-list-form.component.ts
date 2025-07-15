@@ -32,7 +32,7 @@ import { ProfissionalService } from '../../../shared/services/profissional.servi
     ReactiveFormsModule,
   ],
   templateUrl: './service-list-form.component.html',
-  styleUrl: './service-list-form.component.css'
+  styleUrl: './service-list-form.component.scss'
 })
 export class ServiceListFormComponent {
 

@@ -16,7 +16,7 @@ import { EventDetailsDialogComponent } from '../../shared/components/components/
     selector: 'app-full-schedule',
     imports: [FullCalendarModule],
     templateUrl: './full-schedule.component.html',
-    styleUrl: './full-schedule.component.css'
+    styleUrl: './full-schedule.component.scss'
 })
 export class FullScheduleComponent {
 

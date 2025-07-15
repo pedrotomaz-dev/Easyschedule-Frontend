@@ -19,7 +19,7 @@ import { SpinnerService } from '../../core/services/spinner.service';
     MatIconModule,
   ],
   templateUrl: './professional-list.component.html',
-  styleUrl: './professional-list.component.css'
+  styleUrl: './professional-list.component.scss'
 })
 export class ProfessionalListComponent {
 
